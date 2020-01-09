@@ -1,0 +1,77 @@
+﻿@model BookViewModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<section class="block-search">
+    <div class="container">
+        <div class="row block-search-row">
+            <div class="block-search-row-logo">
+                <span class="icon icon-logo"></span>
+            </div>
+            <div class="col-sm-12 col-md-5 col-lg-7 align-self-center block-search-right">
+                <div class="block-search-message">
+                    <h1 class="block-search-message-title">
+                        <span>¿Donde<br> quieres ir?</span>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-7 col-lg-5">
+                <div class="block-search-form box">
+                    <h2 class="block-search-form-title">Book a trip</h2>
+
+                    <form asp-controller="Home" asp-action="Flight" method="POST">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="fromCode">From</label>
+                                        <select class="form-control" id="fromCode" name="fromCode">
+                                            <option value="" disabled selected></option>
+                                            @foreach (var item in Model.Airports)
+                                            {
+                                                <option value="@item.Code">@item.City @item.Code</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="toCode">To</label>
+                                        <select class="form-control" id="toCode" name="toCode">
+                                            <option value="" disabled selected></option>
+                                            @foreach (var item in Model.Airports)
+                                            {
+                                                <option value="@item.Code">@item.City @item.Code</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group block-search-form-date">
+                                        <label for="startDate">Depart date</label>
+                                        <input class="form-control datepicker" id="dpa" name="dpa" data-start="@Model.Today" placeholder="yyyy-mm-dd">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group block-search-form-date">
+                                        <label for="endDate">Return Date</label>
+                                        <input class="form-control datepicker" id="dpb" name="dpb" data-start="@Model.Today" placeholder="yyyy-mm-dd">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button class="btn btn-md btn-primary block-search-form-button" type="submit">Find flights</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<main class="container">
+
+</main>

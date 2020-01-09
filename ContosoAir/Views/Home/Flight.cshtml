@@ -1,0 +1,248 @@
+﻿@model FlightViewModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+    <div class="footer-background">
+        <div class="container container-footer">
+            <section class="block-flights">
+                <a class="redefine-search" href="/book">
+                    Change your search <span class="icon icon-arrow-right"></span>
+                </a>
+                <hr>
+                <h1 class="block-flights-title">Available flights</h1>
+                <form  asp-controller="Home" asp-action="Booked" method="POST">
+                    <h2 class="block-flights-title2">Select departing flight</h2>
+                    <div class="row">
+                        <div class="col-12 col-md-2">
+                            <h3 class="block-flights-title3">@Model.From to @Model.To</h3>
+                        </div>
+                        <div class="col-12 col-md-10">
+                            
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-12 col-md-2">
+                            <options>
+                                <div class="block-flights-options">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h3 class="block-flights-options-title">View by</h3>
+
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square radio-button-square--active"></span>
+                                                    Price
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square"></span>
+                                                    Calendar
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square"></span>
+                                                    Schedule
+                                                </label>
+                                            </div>
+                                            <br>
+                                        </div>
+
+                                        <div class="col-12">
+
+                                            <h3 class="block-flights-options-title">Filter results</h3>
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square"></span>
+                                                    Nonstop
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square radio-button-square--active"></span>
+                                                    1 stop
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square"></span>
+                                                    2+ stops
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </options>
+                        </div>
+                        <div class="col-12 col-md-10">
+                            <ul class="block-flights-results">
+                                @foreach(var item in Model.departs) { 
+                                <li class="block-flights-results-list-item">
+                                    <input  class="d-none" id="fromFlight-@item.Id" type="radio" name="fromFlight" value="@item.Id"  />
+
+                                    <label class="row" >
+                                        <span class="col-9">
+                                            <ul class="block-flights-results-list-item-flights">
+                                                @foreach(var seg in item.Segments) { 
+                                                <li class="row justify-content-start flex-nowrap block-flights-results-list-item-flights-flight">
+                                                    <span class="col-4 col-lg-3">
+                                                        Flight <span>@seg.Flight</span>
+                                                    </span>
+
+                                                    <span class="col-4 col-lg-3">
+                                                        <span>@seg.FromCode</span>
+                                                        <span>@seg.DepartTime</span>
+                                                    </span>
+                                                    <span class="col-4 col-lg-3">
+                                                        <span>@seg.ToCode</span>
+                                                        <span>@seg.ArrivalTime</span>
+                                                    </span>
+                                                </li>
+                                                }
+                                            </ul>
+                                            <span class="row">
+                                                <span class="col-12">
+                                                    <span>@item.Duration</span>
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <span class="col-3 text-center text-md-right">
+                                            <div class="block-flights-results-list-item-price">
+                                                <span>@item.Price</span>
+                                                <span class="big-blue-radio">
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </label>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h2 class="block-flights-title2">Select return flight</h2>
+                    <div class="row">
+                        <div class="col-12 col-md-2">
+                            <h3 class="block-flights-title3">@Model.To to @Model.From}</h3>
+                        </div>
+                        <div class="col-12 col-md-10">
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-2 visible-sm-up">
+                            <options>
+                                <div class="block-flights-options">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h3 class="block-flights-options-title">View by</h3>
+
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square radio-button-square--active"></span>
+                                                    Price
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square"></span>
+                                                    Calendar
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square"></span>
+                                                    Schedule
+                                                </label>
+                                            </div>
+                                            <br>
+                                        </div>
+
+                                        <div class="col-12">
+
+                                            <h3 class="block-flights-options-title">Filter results</h3>
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square"></span>
+                                                    Nonstop
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square radio-button-square--active"></span>
+                                                    1 stop
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label block-flights-options-label">
+                                                    <span class="radio-button-square"></span>
+                                                    2+ stops
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </options>
+                        </div>
+                        <div class="col-12 col-md-10">
+                            <ul class="block-flights-results">
+                                @foreach (var item in Model.returns)
+                                {
+                                    <li class="block-flights-results-list-item">
+                                        <input class="d-none" id="toFlight-@item.Id" type="radio" name="toFlight" value="@item.Id" />
+
+                                        <label class="row">
+                                            <span class="col-9">
+                                                <ul class="block-flights-results-list-item-flights">
+                                                    @foreach (var seg in item.Segments)
+                                                    {
+                                                        <li class="row justify-content-start flex-nowrap block-flights-results-list-item-flights-flight">
+                                                            <span class="col-4 col-lg-3">
+                                                                Flight <span>@seg.Flight</span>
+                                                            </span>
+
+                                                            <span class="col-4 col-lg-3">
+                                                                <span>@seg.FromCode</span>
+                                                                <span>@seg.DepartTime</span>
+                                                            </span>
+                                                            <span class="col-4 col-lg-3">
+                                                                <span>@seg.ToCode</span>
+                                                                <span>@seg.ArrivalTime</span>
+                                                            </span>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                                <span class="row">
+                                                    <span class="col-12">
+                                                        <span>@item.Duration</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                            <span class="col-3 text-center text-md-right">
+                                                <div class="block-flights-results-list-item-price">
+                                                    <span>@item.Price</span>
+                                                    <span class="big-blue-radio">
+                                                    </span>
+                                                </div>
+                                            </span>
+                                        </label>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center text-md-right">
+                        <br>
+                        <input type="hidden" name="fromCode" value="">
+                        <input type="hidden" name="toCode" value="">
+                        <input type="hidden" name="dpa" value="">
+                        <input type="hidden" name="dpb" value="">
+                        <input type="hidden" name="passengers" value="">
+                        <input class="btn btn-lg btn-primary" type="submit" value="Reservar">
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>

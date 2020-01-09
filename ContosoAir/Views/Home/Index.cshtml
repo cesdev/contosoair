@@ -1,0 +1,71 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="block-search">
+    <div class="container">
+        <div class="row block-search-row">
+            <div class="block-search-row-logo">
+                <span class="icon icon-logo"></span>
+            </div>
+            <div class="col-12 col-md-5 col-lg-7 align-self-center block-search-right">
+                <div class="block-search-message">
+                    <h1 class="block-search-message-title">
+                        <span>¿Donde<br> quieres ir?</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<main class="container">
+    <div class="content content--search box">
+        <div class="content-wrapper">
+            <div class="block-cities">
+                <h2 class="block-cities-title">Recomendado para ti</h2>
+                <ul class="row block-cities-list">
+                    @foreach (var item in Model.Destinations)
+                    {
+                        <li class="col-sm-12 col-md-4 block-cities-list-item">
+                            <figure class="block-cities-list-item-figure">
+                                <img alt="@item.Title" class="block-cities-list-item-figure-image block-cities-list-item-figure-image--desktop" src="/assets/cities/@item.DesktopImage">
+                                <img alt="@item.Title" class="block-cities-list-item-figure-image" src="/assets/cities/@item.MobileImage">
+                                <figcaption class="block-cities-list-item-figure-caption">@item.Title</figcaption>
+                            </figure>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="block-deals">
+                <h2 class="block-deals-title">Detalles de vuelos</h2>
+                <deals>
+                    <ul class="row block-deals-list">
+                        @foreach (var item in Model.Deals)
+                        {
+                            <li class="col-sm-12 col-lg-6">
+                                <span class="block-deals-list-item">
+                                    <span class="row">
+                                        <span class="col-7 col-sm-5 block-deals-list-item-col">
+                                            <span class="d-block"><span>@item.FromName</span> (<span>@item.FromCode</span>)</span>
+                                            <span class="d-block">a <span>@item.ToName</span> (<span>@item.ToCode</span>)</span>
+                                            <span class="block-deals-list-item-col-date">Compra por <span>@item.since</span></span>
+                                        </span>
+                                        <span class="col-5 col-sm-4 col-md-3 block-deals-list-item-col block-deals-list-item-col--price">
+                                            <span class="d-block">DESDE $</span>
+                                            <span class="block-deals-list-item-col-price">@item.Price</span>
+                                            <span class="d-block">SOLO IDA</span>
+                                        </span>
+                                        <span class="col-12 col-sm-3 col-md-4 block-deals-list-item-col block-deals-list-item-col--button text-center text-sm-left">
+                                            <button class="btn btn-primary btn-sm block-deals-list-item-col-button" href="#" type="button">Ver fechas</button>
+                                        </span>
+                                    </span>
+                                </span>
+                            </li>
+                        }
+                    </ul>
+                </deals>
+            </div>
+        </div>
+    </div>
+</main>

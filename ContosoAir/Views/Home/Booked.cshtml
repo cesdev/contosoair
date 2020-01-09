@@ -1,0 +1,101 @@
+﻿@model BookedViewModel[]
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<div class="footer-background">
+    <div class="container container-footer">
+        <section class="block-flights">
+            <a class="redefine-search" href="/book">
+                Shop for another flight <span class="icon icon-arrow-right"></span>
+            </a>
+            <hr>
+
+            <h1 class="block-flights-title">Booked flights</h1>
+
+
+            <form action="/book/flights" method="POST">
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <ul class="block-flights-results">
+                            @foreach (var item in Model)
+                            {
+                                <li class="block-flights-results-list-item">
+
+                                    <div class="row mb-3">
+                                        <span class="col-10">
+                                            <ul class="block-flights-results-list-item-flights">
+                                                @foreach (var seg in item.Parting.Segments)
+                                                {
+                                                    <li class="row justify-content-start flex-nowrap block-flights-results-list-item-flights-flight">
+                                                        <span class="col-3">
+                                                            Flight <span>@seg.Flight</span>
+                                                        </span>
+
+                                                        <span class="col-3">
+                                                            <span>@seg.FromCode</span>
+                                                            <span>@seg.DepartTime</span>
+                                                        </span>
+                                                        <span class="col-3">
+                                                            <span>@seg.ToCode</span>
+                                                            <span>@seg.ArrivalTime</span>
+                                                        </span>
+
+                                                    </li>
+                                                }
+                                            </ul>
+                                            <span class="row">
+                                                <span class="col-12">
+                                                    <span>@item.Parting.Duration</span>
+                                                </span>
+                                            </span>
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="row">
+                                        <span class="col-10">
+                                            <ul class="block-flights-results-list-item-flights">
+                                                @foreach (var seg in item.Returning.Segments)
+                                                {
+                                                    <li class="row justify-content-start flex-nowrap block-flights-results-list-item-flights-flight">
+                                                        <span class="col-3">
+                                                            Flight <span>@seg.Flight</span>
+                                                        </span>
+
+                                                        <span class="col-3">
+                                                            <span>@seg.FromCode</span>
+                                                            <span>@seg.DepartTime</span>
+                                                        </span>
+                                                        <span class="col-3">
+                                                            <span>@seg.ToCode</span>
+                                                            <span>@seg.ArrivalTime</span>
+                                                        </span>
+                                                    </li>
+                                                }
+                                            </ul>
+                                            <span class="row">
+                                                <span class="col-12">
+                                                    <span>@item.Returning.Duration</span>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                   
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="text-center text-md-right">
+                    <br>
+                    <a class="btn btn-lg btn-primary" href="/book">Get another flight</a>
+                </div>
+
+            </form>
+
+        </section>
+    </div>
+</div>

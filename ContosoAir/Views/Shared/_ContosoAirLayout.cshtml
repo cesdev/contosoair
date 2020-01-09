@@ -1,0 +1,94 @@
+﻿<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <title>Contoso Air</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/main.js"></script>
+</head>
+<body>
+    <navbar>
+        <nav class="navbar navbar-light block-navbar">
+            <div class="container">
+                <div class="block-navbar-username"><span class="block-navbar-username--logout"> <a class="logout ml-2" href="#">Hi, <span>Oriol</span></a></span></div>
+                <div class="row flex-grow-1">
+                    <div class="col-12 col-md-5 col-lg-5 block-navbar-left">
+                        <a class="navbar-brand" href="/">
+                            <img class="block-navbar-left-logo" src="/assets/logo_contoso_air.svg">
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-7 col-lg-7 block-navbar-right">
+                        <ul class="navbar-nav block-navbar-right-menu">
+                            @if (@User.Identity.IsAuthenticated)
+                            {
+
+                                <li class="nav-item block-navbar-right-menu-item ">
+                                    <a class="nav-link" asp-controller="Home" asp-action="Book">Reservar</a>
+                                </li>
+                                <li class="nav-item block-navbar-right-menu-item ">
+                                    <a class="nav-link" asp-controller="Home" asp-action="Booked">Mis Reservas</a>
+                                </li>
+                                <li class="nav-item  block-navbar-right-menu-item block-navbar-right-menu-item__logout">
+                                    <a class="nav-link" asp-controller="Account" asp-action="Logout">@User.Identity.Name</a>
+                                </li>
+                            }
+                            @if (!@User.Identity.IsAuthenticated)
+                            {
+
+
+                                <li class="nav-item block-navbar-right-menu-item ">
+                                    <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </navbar>
+    <main class="route-content">
+        @RenderBody()
+    </main>
+    <div class="footer">
+        <div class="container">
+            <div class="row menu">
+                <div class="col-12 col-sm-4 footer--col--1">
+                    <h4>ACERCA CONTOSO</h4>
+                    <ul>
+                        <li><a href="#">Quien somos</a></li>
+                        <li><a href="#">Contactanos</a></li>
+                        <li><a href="#">Consejos de viaje</a></li>
+                        <li><a href="#">Compromiso del cliente</a></li>
+                        <li><a href="#">Opiniones del cliente</a></li>
+                        <li><a href="#">Aviso de privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-4 footer--col--2">
+                    <h4>SERVICIO AL CLIENTE</h4>
+                    <ul>
+                        <li><a href="#">Carreras profesionales</a></li>
+                        <li><a href="#">Notas legales</a></li>
+                        <li><a href="#">Noticias</a></li>
+                        <li><a href="#">Relaciones con inversores</a></li>
+                        <li><a href="#">Contrato de transporte</a></li>
+                        <li><a href="#">Plan de retrasos</a></li>
+                        <li><a href="#">Mapa web</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-4 footer--col--3">
+                    <h4>SERVICIOS Y PRODUCTOS</h4>
+                    <ul>
+                        <li><a href="#">Tarifas de servicios opcionales</a></li>
+                        <li><a href="#">Viajes de empresa</a></li>
+                        <li><a href="#">Agentes de viajes</a></li>
+                        <li><a href="#">Mercancias</a></li>
+                        <li><a href="#">Vales regalo</a></li>
+                        <li><a href="#">Síguenos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="footer-copyright">Esta web ha sido creada por Microsoft para propositos de demostración.</p>
+        </div>
+    </div>
+</body>
+</html>

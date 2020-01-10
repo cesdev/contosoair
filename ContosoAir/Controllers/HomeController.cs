@@ -11,18 +11,24 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using ContosoAir.Repository;
 
 namespace ContosoAir.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly DestinationRepository _destinationRep;
+        private readonly AirportRepository _airportRep;
 
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger
+            , DestinationRepository destinationRep
+            , AirportRepository airportRep)
         {
 
             _logger = logger;
+            _destinationRep = destinationRep;
+            _airportRep = airportRep;
         }
 
         public IActionResult Index()
@@ -30,17 +36,17 @@ namespace ContosoAir.Controllers
             IndexViewModel model = new IndexViewModel();
 
 
-
-            model.Destinations = Utils.loadData<Destination[]>("data/destinations.json");
+            model.Destinations = _destinationRep.GetAll().ToArray();
             model.Deals = Utils.loadData<Deal[]>("data/deals.json").Take(4).ToArray();
             return View(model);
         }
+
 
         public IActionResult Book()
         {
             BookViewModel model = new BookViewModel();
 
-            model.Airports = Utils.loadData<Airport[]>("data/airports.json");
+            model.Airports = _airportRep.GetAll().ToArray();
             model.Today = DateTime.Now.ToShortDateString();
             return View(model);
         }

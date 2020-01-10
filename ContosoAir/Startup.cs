@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ContosoAir.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.CookiePolicy;
@@ -42,6 +43,13 @@ namespace ContosoAir
                 options.HttpOnly = HttpOnlyPolicy.None;
                 options.Secure = CookieSecurePolicy.None;
             });
+
+
+            services.AddSingleton<UnitOfWork>();
+
+            services.AddSingleton<DestinationRepository>();
+
+            services.AddSingleton<AirportRepository>();
 
 
         }

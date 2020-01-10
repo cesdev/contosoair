@@ -51,6 +51,8 @@ namespace ContosoAir
 
             services.AddSingleton<AirportRepository>();
 
+            services.AddSingleton<FlightRepository>();
+
 
         }
 

@@ -15,6 +15,10 @@ namespace ContosoAir.Repository
 
         public IMongoCollection<Airport> Airports {get;set;}
 
+        public IMongoCollection<Flight> Flights { get; set; }
+
+
+
         public UnitOfWork() {
             var cliente = new MongoClient("mongodb://localhost:27017");
             var database = cliente.GetDatabase("contosoair");
@@ -24,6 +28,8 @@ namespace ContosoAir.Repository
             Deals = database.GetCollection<Deal>("deal");
 
             Airports = database.GetCollection<Airport>("airport");
+
+            Flights = database.GetCollection<Flight>("flight");
         }
     }
 }

@@ -20,15 +20,18 @@ namespace ContosoAir.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly DestinationRepository _destinationRep;
         private readonly AirportRepository _airportRep;
+        private readonly FlightRepository _flightRep;
 
         public HomeController(ILogger<HomeController> logger
             , DestinationRepository destinationRep
-            , AirportRepository airportRep)
+            , AirportRepository airportRep
+            ,FlightRepository flightRep)
         {
 
             _logger = logger;
             _destinationRep = destinationRep;
             _airportRep = airportRep;
+            _flightRep = flightRep;
         }
 
         public IActionResult Index()
@@ -55,11 +58,11 @@ namespace ContosoAir.Controllers
         {
             FlightViewModel model = new FlightViewModel();
 
-            model.From = "LIMA";
-            model.To = "AREQUIPA";
+            model.From =  "AAA";
+            model.To = "AAE";
 
-            model.departs = Utils.loadData<Flight[]>("data/flights.json").Take(8).ToArray();
-            model.returns = Utils.loadData<Flight[]>("data/flights.json").Take(8).ToArray();
+            model.departs = _flightRep.GetBy(model.From, model.To).ToArray(); 
+            model.returns = _flightRep.GetBy(model.From, model.To).ToArray();
             return View(model);
         }
         [HttpPost]

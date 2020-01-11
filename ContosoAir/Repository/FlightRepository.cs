@@ -1,4 +1,5 @@
 ﻿using ContosoAir.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,16 @@ namespace ContosoAir.Repository
             _db = db;
         }
 
+        public Flight GetById(string id)
+        {
+            return _db.Flights.FindSync(f => (f.Id==id)).FirstOrDefault();
+        }
         public List<Flight> GetBy(string fromCode, string toCode)
         {
-            
+
             return _db.Flights.FindSync(f => (f.FromCode == fromCode && f.ToCode == toCode)).ToList();
         }
+
+    
     }
 }

@@ -81,7 +81,7 @@
                                 <li class="block-flights-results-list-item">
                                     <input  class="d-none" id="fromFlight-@item.Id" type="radio" name="fromFlight" value="@item.Id"  />
 
-                                    <label class="row" >
+                                    <label class="row" for="fromFlight-@item.Id">
                                         <span class="col-9">
                                             <ul class="block-flights-results-list-item-flights">
                                                 @foreach(var seg in item.Segments) { 
@@ -192,7 +192,7 @@
                                     <li class="block-flights-results-list-item">
                                         <input class="d-none" id="toFlight-@item.Id" type="radio" name="toFlight" value="@item.Id" />
 
-                                        <label class="row">
+                                        <label class="row" for="toFlight-@item.Id">
                                             <span class="col-9">
                                                 <ul class="block-flights-results-list-item-flights">
                                                     @foreach (var seg in item.Segments)

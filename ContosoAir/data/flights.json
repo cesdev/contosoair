@@ -48,11 +48,11 @@
     ]
   },
   {
-    
+
     "duration": "08h 15m",
     "price": "498",
-    "fromCode": "FROMCODE",
-    "toCode": "TOCODE",
+    "fromCode": "AAA",
+    "toCode": "AAE",
     "distance": "4150",
     "segments": [
       {
@@ -72,11 +72,11 @@
     ]
   },
   {
-    
+
     "duration": "09h 45m",
     "price": "567",
-    "fromCode": "FROMCODE",
-    "toCode": "TOCODE",
+    "fromCode": "AAA",
+    "toCode": "AAL",
     "distance": "3750",
     "segments": [
       {

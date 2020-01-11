@@ -19,5 +19,7 @@ namespace ContosoAir.Repository
         {
             return _db.Airports.FindSync(a => true).ToList();
         }
+
+
     }
 }

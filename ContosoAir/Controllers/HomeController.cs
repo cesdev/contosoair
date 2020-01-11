@@ -41,6 +41,7 @@ namespace ContosoAir.Controllers
         {
             IndexViewModel model = new IndexViewModel();
 
+            var l = _flightRep.GetGroupByFromCode();
 
             model.Destinations = _destinationRep.GetAll().ToArray();
             model.Deals = Utils.loadData<Deal[]>("data/deals.json").Take(4).ToArray();
